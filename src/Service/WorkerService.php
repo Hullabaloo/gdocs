@@ -35,7 +35,6 @@ class WorkerService
      */
     public function processFilesListAndDownload(array $files, string $token, string $uploadFolderId, string $archiveFolderId, string $invalidFolderId): array
     {
-        $dataFiles = [];
         $invalidFiles=0;
         $totalFilesDownloaded = 0;
         if (isset($files)) {

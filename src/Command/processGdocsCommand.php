@@ -2,18 +2,11 @@
 
 namespace App\Command;
 
-use http\Env\Response;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use App\Service\DriveApi;
-use App\Service\FilesService;
 use App\Service\WorkerService;
-use App\Entity\Partners;
-use App\Entity\PartnerSales;
-use Doctrine\Persistence\ManagerRegistry;
-use App\Repository\PartnersRepository;
-use DateTime;
 
 class processGdocsCommand extends Command
 {
@@ -22,17 +15,11 @@ class processGdocsCommand extends Command
     protected static $defaultDescription = '';
 
     private $driveApi;
-    private $managerRegistry;
-    private $partnersRepository;
-    private $filesService;
     private $workersService;
 
-    public function __construct(DriveApi $driveApi, ManagerRegistry $managerRegistry, PartnersRepository $partnersRepository, FilesService $filesService, WorkerService $workersService)
+    public function __construct(DriveApi $driveApi, WorkerService $workersService)
     {
         $this->driveApi = $driveApi;
-        $this->managerRegistry = $managerRegistry;
-        $this->partnersRepository = $partnersRepository;
-        $this->filesService = $filesService;
         $this->workersService = $workersService;
 
         parent::__construct();

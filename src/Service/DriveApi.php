@@ -13,7 +13,7 @@ class DriveApi
 
     /**
      * Request valid access token from google API
-     * using service account key file
+     * using service account key file values
      * @return array
      */
     public function requestAuthToken(): array
@@ -119,7 +119,6 @@ class DriveApi
      */
     public function fileDownloadCSV(string $accessToken, \stdClass $file, string $path): string
     {
-        //echo $file->name . PHP_EOL;
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => 'https://www.googleapis.com/drive/v2/files/' . $file->id . '?alt=media',
@@ -145,7 +144,6 @@ class DriveApi
      */
     public function fileDownloadGoogleSheets(string $accessToken, \stdClass $file, string $path): string
     {
-        //echo $file->name . PHP_EOL;
         $ch = curl_init();
         //mimeType=text/csv
         curl_setopt_array($ch, [
@@ -191,8 +189,6 @@ class DriveApi
     public function getElementIdByName(string $accessToken, string $query)
     {
         $ch = curl_init();
-        //$q = "name = 'upload'";
-        //$q = "parents in '1EDy46Ot6DZnGkQRFHvtGCXNsBSOonzHJ'";
         curl_setopt_array($ch, [
             CURLOPT_URL => 'https://www.googleapis.com/drive/v3/files?q='.urlencode("name ='".$query."'"),
             CURLOPT_HTTPHEADER => array(
