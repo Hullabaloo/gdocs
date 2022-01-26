@@ -28,7 +28,7 @@
 * установите зависимости и запустите контейнер, находясь в корневой папке приложения
     - composer install
     - docker-compose up
-* зайти в контейнер php через команду "docker exec -it <containerID> /bin/bash", 
+* зайти в контейнер php через команду "docker exec -it _containerID_ /bin/bash", 
   после чего выполните следующие команды для создания таблиц в БД
   - cd /srv/www/gdocs
   - php bin/console doctrine:migrations:migrate
