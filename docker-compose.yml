@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  php:
+    build:
+      context: ./docker/php
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/srv/www/gdocs
+     # - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+     # - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      MYSQL_USER: gdocuser
+      MYSQL_PASSWORD: qweasdzxc
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      #- /data/redis:/data
+      - ../data/mysql/gdocs:/data/mysql/gdocs
+    command: mysqld --sql_mode=""
+    depends_on:
+      - php
+    environment:
+      MYSQL_ROOT_PASSWORD: qweasdzxc
+      MYSQL_DATABASE: gdocs
+      MYSQL_USER: gdocuser
+      MYSQL_PASSWORD: qweasdzxc
+
+  #redis:
+  #  build: ./docker/redis
+  #  volumes_from:
+  #    - ./:/srv/redis/babyblog_spec
+  #  ports:
+  #    - "6378:6379"
